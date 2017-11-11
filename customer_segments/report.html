@@ -12140,13 +12140,13 @@ div#notebook {
 <span class="c1"># TODO: Split the data into training and testing sets(0.25) using the given feature as the target</span>
 <span class="c1"># Set a random state.</span>
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
-
-<span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="c1"># IMPLEMENTATION</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="n">deli</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">13</span><span class="p">)</span>
 
 <span class="c1"># TODO: Create a decision tree regressor and fit it to the training set</span>
 <span class="n">regressor</span> <span class="o">=</span> <span class="bp">None</span>
-
+<span class="c1"># IMPLEMENTATION</span>
 <span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span>
 <span class="n">regressor</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">13</span><span class="p">)</span>
 <span class="n">regressor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
@@ -12164,14 +12164,6 @@ div#notebook {
 <div class="output_wrapper">
 <div class="output">
 
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/Users/rmartinsjr/anaconda/lib/python2.7/site-packages/sklearn/cross_validation.py:41: DeprecationWarning: This module was deprecated in version 0.18 in favor of the model_selection module into which all the refactored classes and functions are moved. Also note that the interface of the new CV iterators are different from that of this module. This module will be removed in 0.20.
-  &#34;This module will be removed in 0.20.&#34;, DeprecationWarning)
-</pre>
-</div>
-</div>
 
 <div class="output_area"><div class="prompt"></div>
 
@@ -12354,7 +12346,7 @@ div#notebook {
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1a137bcc90&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1a14013650&gt;</pre>
 </div>
 
 </div>
@@ -14359,10 +14351,10 @@ AAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p><em>In this dataset, each feature seems to follow a normal distribution, as shown in the diagonal of the scatter matrix. Due to the large number of data points near the origin (0), the data set seems to be skewed and therefore it needs to be scaled. Additionally, many of them include points far away from the cluster, each of which can be considered an outlier. After after scaling, the outliers should be evaluated and removed if needed.</em></p>
+<p><em>In this dataset, as seen in the diagonal of the scatter matrix, the features are not normally distributed. It's possible to observe a long tail on the right side, meaning they are positively skewed. Additionally, the features are also more concentrated near the origin, indicating we could benefit from scaling. After scaling, the outliers must be evaluated and removed if needed.</em></p>
 <p><em>Actually there are some degree of correlation among the features. Based on the scatter plot, one could see correlation between grocery and milk, grocery and detergents_paper, and possibly between detergents_paper and milk.</em></p>
 <p><em>The scatter plot does confirm the relevance of the feature I tried to predict because it shows no correlation between delicatessen and the other features.</em></p>
-<p><em>There are cluster of data near the origin and some outliers when comparing the feature I tried to predict (Delicatessen) with the other features. All seem to follow this pattern.</em></p>
+<p><em>There are clusters of data near the origin and some outliers when comparing the feature I tried to predict (Delicatessen) with the other features. All seem to follow this pattern.</em></p>
 
 </div>
 </div>
@@ -14532,7 +14524,7 @@ AAAAAElFTkSuQmCC
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1a12206950&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1a11f09c10&gt;</pre>
 </div>
 
 </div>
@@ -19567,16 +19559,6 @@ SZIkSVKHgUmSJEmSOgxMkiRJktRhYJIkSZKkju8Bsv/vJplFHiQAAAAASUVORK5CYII=
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Observation">Observation<a class="anchor-link" href="#Observation">&#182;</a></h3><p>Run the code below to see how the log-transformed sample data has changed after having a PCA transformation applied to it in six dimensions. Observe the numerical value for the first four dimensions of the sample points. Consider if this is consistent with your initial interpretation of the sample points.</p>
-
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
@@ -19667,6 +19649,16 @@ SZIkSVKHgUmSJEmSOgxMkiRJktRhYJIkSZKkju8Bsv/vJplFHiQAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Observation">Observation<a class="anchor-link" href="#Observation">&#182;</a></h3><p>Run the code below to see how the log-transformed sample data has changed after having a PCA transformation applied to it in six dimensions. Observe the numerical value for the first four dimensions of the sample points. Consider if this is consistent with your initial interpretation of the sample points.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Implementation:-Dimensionality-Reduction">Implementation: Dimensionality Reduction<a class="anchor-link" href="#Implementation:-Dimensionality-Reduction">&#182;</a></h3><p>When using principal component analysis, one of the main goals is to reduce the dimensionality of the data — in effect, reducing the complexity of the problem. Dimensionality reduction comes at a cost: Fewer dimensions used implies less of the total variance in the data is being explained. Because of this, the <em>cumulative explained variance ratio</em> is extremely important for knowing how many dimensions are necessary for the problem. Additionally, if a signifiant amount of variance is explained by only two or three dimensions, the reduced data can be visualized afterwards.</p>
 <p>In the code block below, you will need to implement the following:</p>
 <ul>
@@ -19680,7 +19672,7 @@ SZIkSVKHgUmSJEmSOgxMkiRJktRhYJIkSZKkju8Bsv/vJplFHiQAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Apply PCA by fitting the good data with only two dimensions</span>
@@ -19716,7 +19708,7 @@ SZIkSVKHgUmSJEmSOgxMkiRJktRhYJIkSZKkju8Bsv/vJplFHiQAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Display sample log-data after applying PCA transformation in two dimensions</span>
@@ -19796,7 +19788,7 @@ SZIkSVKHgUmSJEmSOgxMkiRJktRhYJIkSZKkju8Bsv/vJplFHiQAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Create a biplot</span>
@@ -19811,11 +19803,11 @@ SZIkSVKHgUmSJEmSOgxMkiRJktRhYJIkSZKkju8Bsv/vJplFHiQAAAAASUVORK5CYII=
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[12]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1a12451610&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1a154425d0&gt;</pre>
 </div>
 
 </div>
@@ -20938,8 +20930,12 @@ rkJggg==
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
 <p><em>The main advantages of K-Means are scalability and simplicity. Scalability means that K-Means can scale very well to a large number of samples; while simplicity is related to the simple algorithm used: assign &amp; update. Due to these characteristics, K-Means has been applied to a wide range of applications.</em></p>
-<p><em>Gaussian Mixture Model is fast, actually one of the fastest, and clusters can have different sizes and shapes, thus making it more adaptable to different data sets.</em></p>
+<p><em>Gaussian Mixture Model is fast, actually one of the fastest for learning mixture models (<a href="http://scikit-learn.org/stable/modules/mixture.html" title="Pros and cons of class GaussianMixture">1</a>) and clusters can have different sizes and shapes, thus making it more adaptable to different data sets. It is not as fast as K-Means, though.</em></p>
 <p><em>Given the shapes seen in the scatter matrix, a algorithm like K-Mean, which is considered a hard-clustering algorithm that produces clusters of comparable extents may not be the best unsupervised clustering algorithm for our data set. On the other hand, a soft-clustering algorithm, which provides the probability of a data point belonging to a cluster and produces clusters of different sizes and shapes may be more appropriate.</em></p>
+<p>Reference:</p>
+<ol>
+<li>Pros and cons of class GaussianMixture: <a href="http://scikit-learn.org/stable/modules/mixture.html">http://scikit-learn.org/stable/modules/mixture.html</a></li>
+</ol>
 
 </div>
 </div>
@@ -20967,7 +20963,7 @@ rkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">### TODO: Apply your clustering algorithm of choice to the reduced data </span>
@@ -21077,7 +21073,7 @@ rkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Display the results of the clustering from implementation</span>
@@ -21797,7 +21793,7 @@ RU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Inverse transform the centers</span>
@@ -21935,7 +21931,7 @@ RU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Display the predictions</span>
@@ -22020,6 +22016,8 @@ Sample point 2 predicted to be in Cluster 2
 <p><strong>Answer:</strong></p>
 <p><em>It is safe to say that not all customers are affected equally - some customers may depend on frequent delivery of goods to keep the business running, be it a dependency on freshness, expiration date, or storage limitations. On the other hand, some customer may react positively if they trade non-perishable items, for instance.</em></p>
 <p><em>Following this logic, the wholesale distributor could change the delivery service for customer that do not depend strongly on perishable items, like retailers, and as such should try first the Segment 1.</em></p>
+<p><em>To apply the A/B test on segment 1, the wholesale distributor should randomly sample customers from this segment to split them into 2 groups: one control group (group A) which will be serviced 5 days a week, as usual, and a second group (group B) which the delivery service will be changed to 3 days a week. Here it was chosen to randomly sample the customer supposing there is no other information to support any other method to homogeneously sample the customers.</em></p>
+<p><em>Before starting the test, all the customers from both groups will answer a survey asking a few objective questions about the delivery service, its effectiveness and how satisfied they are. The delivery service is then changed to 3 days a week for the group B, and at the end of the test period, which could be a couple of weeks or one month, the same survey is applied again to both groups. The results of the surveys are compared, first to decide if the difference is statistically relevant and if that is the case, if group B positively evaluated the new delivery service.</em></p>
 
 </div>
 </div>
@@ -22063,7 +22061,7 @@ Sample point 2 predicted to be in Cluster 2
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Display the clustering results based on &#39;Channel&#39; data</span>
