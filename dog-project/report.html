@@ -11726,7 +11726,9 @@ body {
 div#notebook {
   overflow: visible;
   border-top: none;
-}@media print {
+}
+
+@media print {
   div.cell {
     display: block;
     page-break-inside: avoid;
@@ -11747,7 +11749,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -11771,7 +11773,8 @@ div#notebook {
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11853,9 +11856,7 @@ div#notebook {
 
 
 <div class="output_area">
-
 <div class="prompt"></div>
-
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>There are 133 total dog categories.
@@ -11872,7 +11873,8 @@ There are 836 test dog images.
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11906,9 +11908,7 @@ There are 836 test dog images.
 
 
 <div class="output_area">
-
 <div class="prompt"></div>
-
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>There are 13233 total human images.
@@ -11920,7 +11920,8 @@ There are 836 test dog images.
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11977,9 +11978,7 @@ There are 836 test dog images.
 
 
 <div class="output_area">
-
 <div class="prompt"></div>
-
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Number of faces detected: 1
@@ -11988,9 +11987,7 @@ There are 836 test dog images.
 </div>
 
 <div class="output_area">
-
 <div class="prompt"></div>
-
 
 
 
@@ -12006,7 +12003,8 @@ There are 836 test dog images.
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12035,7 +12033,8 @@ There are 836 test dog images.
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12045,7 +12044,8 @@ There are 836 test dog images.
 <li>What percentage of the first 100 images in <code>dog_files</code> have a detected human face? </li>
 </ul>
 <p>Ideally, we would like 100% of human images with a detected face and 0% of dog images with a detected face.  You will see that our algorithm falls short of this goal, but still gives acceptable performance.  We extract the file paths for the first 100 images from each of the datasets and store them in the numpy arrays <code>human_files_short</code> and <code>dog_files_short</code>.</p>
-<p><strong>Answer:</strong></p>
+<p><strong>Answer:</strong>
+As shown below, the human face detector performance in images with human faces is 100%, while detected human faces in 12% of the dog images.</p>
 
 </div>
 </div>
@@ -12085,9 +12085,7 @@ There are 836 test dog images.
 
 
 <div class="output_area">
-
 <div class="prompt"></div>
-
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Human face detector performance in human_files_short: 100%
@@ -12100,12 +12098,15 @@ Human faces detector performance in dog_files_short: 12%
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Question 2:</strong> This algorithmic choice necessitates that we communicate to the user that we accept human images only when they provide a clear view of a face (otherwise, we risk having unneccessarily frustrated users!). In your opinion, is this a reasonable expectation to pose on the user? If not, can you think of a way to detect humans in images that does not necessitate an image with a clearly presented face?</p>
-<p><strong>Answer:</strong></p>
+<p><strong>Answer:</strong> It's safe to say that we can't expect much from regular users. Nevetheless, we can avoid having unnecessary frustrated users using available technology to automatically detect human faces in pictures as explained <a href="https://medium.com/@ageitgey/machine-learning-is-fun-part-4-modern-face-recognition-with-deep-learning-c3cffc121d78">here</a>.</p>
+<p>Histogram of Oriented Gradients is available since 2005 and it detects faces in pictures by basically converting them to gray-scale (black &amp; white images) and creating a map (a gradient map) which maps the directions in which the pixels are getting darker in each region of the image. This step is necessary to abstract image characteristics such as light and color, which might make the work harder, and focus only in the brightness changes in the image. This map is then used to find its parts that most resemble to the generic HOG encoding of a face.</p>
+<hr>
 <p>We suggest the face detector from OpenCV as a potential way to detect human images in your algorithm, but you are free to explore other approaches, especially approaches that make use of deep learning :).  Please use the code cell below to design and test your own face detection algorithm.  If you decide to pursue this <em>optional</em> task, report performance on each of the datasets.</p>
 
 </div>
@@ -12113,7 +12114,7 @@ Human faces detector performance in dog_files_short: 12%
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[71]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## (Optional) TODO: Report the performance of another  </span>
@@ -12126,7 +12127,8 @@ Human faces detector performance in dog_files_short: 12%
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12153,24 +12155,22 @@ Human faces detector performance in dog_files_short: 12%
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Pre-process-the-Data">Pre-process the Data<a class="anchor-link" href="#Pre-process-the-Data">&#182;</a></h3><p>When using TensorFlow as backend, Keras CNNs require a 4D array (which we'll also refer to as a 4D tensor) as input, with shape</p>
-<p>$$
+$$
 (\text{nb_samples}, \text{rows}, \text{columns}, \text{channels}),
-$$</p>
-<p>where <code>nb_samples</code> corresponds to the total number of images (or samples), and <code>rows</code>, <code>columns</code>, and <code>channels</code> correspond to the number of rows, columns, and channels for each image, respectively.</p>
+$$<p>where <code>nb_samples</code> corresponds to the total number of images (or samples), and <code>rows</code>, <code>columns</code>, and <code>channels</code> correspond to the number of rows, columns, and channels for each image, respectively.</p>
 <p>The <code>path_to_tensor</code> function below takes a string-valued file path to a color image as input and returns a 4D tensor suitable for supplying to a Keras CNN.  The function first loads the image and resizes it to a square image that is $224 \times 224$ pixels.  Next, the image is converted to an array, which is then resized to a 4D tensor.  In this case, since we are working with color images, each image has three channels.  Likewise, since we are processing a single image (or sample), the returned tensor will always have shape</p>
-<p>$$
+$$
 (1, 224, 224, 3).
-$$</p>
-<p>The <code>paths_to_tensor</code> function takes a numpy array of string-valued image paths as input and returns a 4D tensor with shape</p>
-<p>$$
+$$<p>The <code>paths_to_tensor</code> function takes a numpy array of string-valued image paths as input and returns a 4D tensor with shape</p>
+$$
 (\text{nb_samples}, 224, 224, 3).
-$$</p>
-<p>Here, <code>nb_samples</code> is the number of samples, or number of images, in the supplied array of image paths.  It is best to think of <code>nb_samples</code> as the number of 3D tensors (where each 3D tensor corresponds to a different image) in your dataset!</p>
+$$<p>Here, <code>nb_samples</code> is the number of samples, or number of images, in the supplied array of image paths.  It is best to think of <code>nb_samples</code> as the number of 3D tensors (where each 3D tensor corresponds to a different image) in your dataset!</p>
 
 </div>
 </div>
@@ -12201,7 +12201,8 @@ $$</p>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12230,7 +12231,8 @@ $$</p>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12256,7 +12258,8 @@ $$</p>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12265,7 +12268,7 @@ $$</p>
 <li>What percentage of the images in <code>human_files_short</code> have a detected dog?  </li>
 <li>What percentage of the images in <code>dog_files_short</code> have a detected dog?</li>
 </ul>
-<p><strong>Answer:</strong></p>
+<p><strong>Answer:</strong> As shown below, the dog face detector performance in images with dog faces is 100%, while detected dog faces in 3% of the human images.</p>
 
 </div>
 </div>
@@ -12302,9 +12305,7 @@ $$</p>
 
 
 <div class="output_area">
-
 <div class="prompt"></div>
-
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Dog face detector performance in human_files_short: 3%
@@ -12317,7 +12318,8 @@ Dog faces detector performance in dog_files_short: 100%
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12399,9 +12401,7 @@ Dog faces detector performance in dog_files_short: 100%
 
 
 <div class="output_area">
-
 <div class="prompt"></div>
-
 
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>100%|██████████| 6680/6680 [00:56&lt;00:00, 118.60it/s]
@@ -12415,7 +12415,8 @@ Dog faces detector performance in dog_files_short: 100%
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12469,9 +12470,7 @@ As mentioned earlier, this is a difficult task even for humans and since it was 
 
 
 <div class="output_area">
-
 <div class="prompt"></div>
-
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>_________________________________________________________________
@@ -12505,7 +12504,8 @@ _________________________________________________________________
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12526,7 +12526,8 @@ _________________________________________________________________
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12566,9 +12567,7 @@ _________________________________________________________________
 
 
 <div class="output_area">
-
 <div class="prompt"></div>
-
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Train on 6680 samples, validate on 835 samples
@@ -12977,9 +12976,7 @@ Epoch 00100: val_loss did not improve
 </div>
 
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[80]:</div>
-
 
 
 
@@ -12993,7 +12990,8 @@ Epoch 00100: val_loss did not improve
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13014,7 +13012,8 @@ Epoch 00100: val_loss did not improve
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13045,9 +13044,7 @@ Epoch 00100: val_loss did not improve
 
 
 <div class="output_area">
-
 <div class="prompt"></div>
-
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Test accuracy: 11.9617%
@@ -13059,7 +13056,8 @@ Epoch 00100: val_loss did not improve
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13086,7 +13084,8 @@ Epoch 00100: val_loss did not improve
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13116,9 +13115,7 @@ Epoch 00100: val_loss did not improve
 
 
 <div class="output_area">
-
 <div class="prompt"></div>
-
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>_________________________________________________________________
@@ -13140,7 +13137,8 @@ _________________________________________________________________
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13161,7 +13159,8 @@ _________________________________________________________________
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13191,9 +13190,7 @@ _________________________________________________________________
 
 
 <div class="output_area">
-
 <div class="prompt"></div>
-
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Train on 6680 samples, validate on 835 samples
@@ -13282,9 +13279,7 @@ Epoch 00020: val_loss improved from 7.16302 to 7.07192, saving model to saved_mo
 </div>
 
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[86]:</div>
-
 
 
 
@@ -13298,7 +13293,8 @@ Epoch 00020: val_loss improved from 7.16302 to 7.07192, saving model to saved_mo
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13319,7 +13315,8 @@ Epoch 00020: val_loss improved from 7.16302 to 7.07192, saving model to saved_mo
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13350,9 +13347,7 @@ Epoch 00020: val_loss improved from 7.16302 to 7.07192, saving model to saved_mo
 
 
 <div class="output_area">
-
 <div class="prompt"></div>
-
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Test accuracy: 49.0431%
@@ -13364,7 +13359,8 @@ Epoch 00020: val_loss improved from 7.16302 to 7.07192, saving model to saved_mo
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13393,7 +13389,8 @@ Epoch 00020: val_loss improved from 7.16302 to 7.07192, saving model to saved_mo
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13440,7 +13437,8 @@ test_{network} = bottleneck_features['test']</code></pre>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13480,9 +13478,7 @@ After trying many alternative architectures, no one provided the same accuracy o
 
 
 <div class="output_area">
-
 <div class="prompt"></div>
-
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>_________________________________________________________________
@@ -13504,7 +13500,8 @@ _________________________________________________________________
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13527,7 +13524,8 @@ _________________________________________________________________
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13561,9 +13559,7 @@ _________________________________________________________________
 
 
 <div class="output_area">
-
 <div class="prompt"></div>
-
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Train on 6680 samples, validate on 835 samples
@@ -13652,9 +13648,7 @@ Epoch 00020: val_loss did not improve
 </div>
 
 <div class="output_area">
-
 <div class="prompt output_prompt">Out[93]:</div>
-
 
 
 
@@ -13668,7 +13662,8 @@ Epoch 00020: val_loss did not improve
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13691,7 +13686,8 @@ Epoch 00020: val_loss did not improve
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13724,9 +13720,7 @@ Epoch 00020: val_loss did not improve
 
 
 <div class="output_area">
-
 <div class="prompt"></div>
-
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Test accuracy: 80.6220%
@@ -13738,7 +13732,8 @@ Epoch 00020: val_loss did not improve
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13784,7 +13779,8 @@ Epoch 00020: val_loss did not improve
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13895,9 +13891,7 @@ Epoch 00020: val_loss did not improve
 
 
 <div class="output_area">
-
 <div class="prompt"></div>
-
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Chosen image: lfw/Taha_Yassin_Ramadan/Taha_Yassin_Ramadan_0007.jpg
@@ -13906,9 +13900,7 @@ Epoch 00020: val_loss did not improve
 </div>
 
 <div class="output_area">
-
 <div class="prompt"></div>
-
 
 
 
@@ -13924,7 +13916,8 @@ Epoch 00020: val_loss did not improve
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13933,7 +13926,12 @@ Epoch 00020: val_loss did not improve
 <h2 id="Step-7:-Test-Your-Algorithm">Step 7: Test Your Algorithm<a class="anchor-link" href="#Step-7:-Test-Your-Algorithm">&#182;</a></h2><p>In this section, you will take your new algorithm for a spin!  What kind of dog does the algorithm think that <strong>you</strong> look like?  If you have a dog, does it predict your dog's breed accurately?  If you have a cat, does it mistakenly think that your cat is a dog?</p>
 <h3 id="(IMPLEMENTATION)-Test-Your-Algorithm-on-Sample-Images!">(IMPLEMENTATION) Test Your Algorithm on Sample Images!<a class="anchor-link" href="#(IMPLEMENTATION)-Test-Your-Algorithm-on-Sample-Images!">&#182;</a></h3><p>Test your algorithm at least six images on your computer.  Feel free to use any images you like.  Use at least two human and two dog images.</p>
 <p><strong>Question 6:</strong> Is the output better than you expected :) ?  Or worse :( ?  Provide at least three possible points of improvement for your algorithm.</p>
-<p><strong>Answer:</strong></p>
+<p><strong>Answer:</strong> The output is better than I'd expect. It correctly identified a dachshund, didn't recognize a cat (as expected) and a pug was misidentified as a bulldog (pretty reasonable). On the other hand, all three humans were categorized as dachshunds, what was quite disappointing...</p>
+<p>Image classification performance could be improved by applying some technics as explained by this <a href="https://blog.keras.io/building-powerful-image-classification-models-using-very-little-data.html">blog post</a>. The post proposes the usage of augmentation, modulate entropic capacity.</p>
+<p>Augmentation is the application of random number of image transformations to our dataset, increasing the number of images the model will be exposed and therefore avoiding overfitting and improving its generalization power.</p>
+<p>Modulation of entropic capacity, which could be explaining as controlling the amount of information allowed to be stored by the model, could be achieved adjusting the parameters of our model, such as number of layers, size of each layer and weight regularization, which controls how much faster or slower the model will learn.</p>
+<p>But our model uses a pre-trained convolutional neural network, where the last activation maps (before the fully connected layers) are saved (bottleneck features) and therefore we cannot use augmentation nor modulate its entropic capacity.</p>
+<p>Another possible strategy consists of fine-tuning the top layers of the pre-trained model. In this approach all layers are pre-trained (including the top, fully connected model) and then the layers of the convolutional neural net are frozen but the last one. This last layer of the convolutional net and the top, fully connected model, are then trained again, allowing to fine-tune their weights.</p>
 
 </div>
 </div>
@@ -13978,9 +13976,7 @@ Epoch 00020: val_loss did not improve
 
 
 <div class="output_area">
-
 <div class="prompt"></div>
-
 
 
 
@@ -13992,6 +13988,19 @@ Epoch 00020: val_loss did not improve
 
 </div>
 
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+</div>
 </div>
 </div>
 
